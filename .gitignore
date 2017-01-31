@@ -1,0 +1,8 @@
+env
+build
+dist
+.cache
+invisible_ink.egg-info
+
+*.pyc
+*.swp
