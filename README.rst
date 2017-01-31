@@ -28,13 +28,13 @@ Optionally appends or prepends the watermark string.
 
 Parameters:
 
- * ``text``: Unicode string to which the watermark will be added
+* ``text``: Unicode string to which the watermark will be added
 
- * ``watermark_uuid``: ``uuid.UUID`` instance to use as the watermark.
-   (``uuid.uuid4()`` will be used to generate one if not provided.)
+* ``watermark_uuid``: ``uuid.UUID`` instance to use as the watermark.
+  (``uuid.uuid4()`` will be used to generate one if not provided.)
 
- * ``prepend``: Indicates whether the watermark should be prended to ``text``
-   (defaults to ``False``). If ``False``, the watermark will be appended.
+* ``prepend``: Indicates whether the watermark should be prended to ``text``
+  (defaults to ``False``). If ``False``, the watermark will be appended.
 
 Returns:
 
@@ -47,7 +47,7 @@ Decodes the given text, separating out the original text and the watermark uuid.
 
 Paramters:
 
- * ``encoded_text``: Unicode string which potentially includes a watermark
+* ``encoded_text``: Unicode string which potentially includes a watermark
 
 Returns:
 
