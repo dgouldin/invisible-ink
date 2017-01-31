@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import re
 import uuid
 
 _INVISIBLE_CHARS = (
@@ -22,6 +23,11 @@ def uuid_to_watermark(watermark_uuid):
 
 _WATERMARK_LENGTH = len(uuid_to_watermark(uuid.uuid4()))
 
+_WATERMARK_RE = re.compile(r'[{}]{{{}}}'.format(
+    ''.join(_INVISIBLE_CHARS),
+    _WATERMARK_LENGTH,
+))
+
 
 def watermark_to_uuid(watermark):
     "Returns the uuid for a given watermark string"
@@ -38,6 +44,10 @@ def watermark_to_uuid(watermark):
         raise ValueError('Watermark contains invalid characters')
 
     return uuid.UUID(hex=watermark_hex)
+
+
+def find_all_watermark_uuids(encoded_text):
+    return map(watermark_to_uuid, _WATERMARK_RE.findall(encoded_text))
 
 
 def encode_watermark(text, watermark_uuid=None, prepend=False):

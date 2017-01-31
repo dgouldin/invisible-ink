@@ -7,6 +7,7 @@ import pytest
 from invisible_ink import (
     decode_watermark,
     encode_watermark,
+    find_all_watermark_uuids,
     uuid_to_watermark,
     watermark_to_uuid,
 )
@@ -100,6 +101,20 @@ def test_watermark_to_uuid():
         '\ufeff\u200d',  # e
         '\ufeff\ufeff',  # f
     ))) == watermark_uuid
+
+
+def test_find_all_watermark_uuids():
+    uuids = [uuid.uuid4() for i in range(5)]
+
+    encoded_text = """{}asdf\ufeff\u200b
+
+    \u200b\u200d\u200b\ufeffasdfasdf{}asdfasdf
+
+    {}{}
+
+    asdfasdfasdf{}""".format(*map(uuid_to_watermark, uuids))
+
+    assert find_all_watermark_uuids(encoded_text) == uuids
 
 
 def test_encode_watermark_requires_unicode_text():

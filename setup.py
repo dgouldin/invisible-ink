@@ -31,7 +31,7 @@ tests_require = [
 
 setup(
     name='invisible-ink',
-    version='0.1',
+    version='0.1.1',
     description='Embedded messages in text for Python.',
     long_description=long_description,
     author='David Gouldin',
